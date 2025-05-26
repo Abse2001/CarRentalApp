@@ -58,7 +58,7 @@ namespace CarRentalApp
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            // Optional: initialization logic on load
+            
         }
 
         private void logoBox_Click(object sender, EventArgs e)
