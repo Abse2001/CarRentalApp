@@ -34,7 +34,6 @@ namespace CarRentalApp
             txtPassword = new TextBox();
             btnLogin = new Button();
             btnSignUp = new Button();
-            leftPanel.SuspendLayout();
             rightPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,10 +45,11 @@ namespace CarRentalApp
             leftPanel.Name = "leftPanel";
             leftPanel.Size = new Size(200, 280);
             leftPanel.TabIndex = 1;
+            leftPanel.Paint += leftPanel_Paint;
             // 
             // rightPanel
             // 
-            rightPanel.BackColor = Color.White;
+            rightPanel.BackColor = Color.FromArgb(45, 45, 48);
             rightPanel.Controls.Add(lblLoginTitle);
             rightPanel.Controls.Add(lblUsername);
             rightPanel.Controls.Add(txtUsername);
@@ -62,11 +62,13 @@ namespace CarRentalApp
             rightPanel.Name = "rightPanel";
             rightPanel.Size = new Size(300, 280);
             rightPanel.TabIndex = 0;
+            rightPanel.Paint += rightPanel_Paint;
             // 
             // lblLoginTitle
             // 
             lblLoginTitle.AutoSize = true;
             lblLoginTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblLoginTitle.ForeColor = Color.Snow;
             lblLoginTitle.Location = new Point(40, 20);
             lblLoginTitle.Name = "lblLoginTitle";
             lblLoginTitle.Size = new Size(213, 25);
@@ -76,6 +78,7 @@ namespace CarRentalApp
             // lblUsername
             // 
             lblUsername.AutoSize = true;
+            lblUsername.ForeColor = SystemColors.Control;
             lblUsername.Location = new Point(40, 70);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(60, 15);
@@ -92,6 +95,7 @@ namespace CarRentalApp
             // lblPassword
             // 
             lblPassword.AutoSize = true;
+            lblPassword.ForeColor = SystemColors.Control;
             lblPassword.Location = new Point(40, 130);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(57, 15);
@@ -121,12 +125,14 @@ namespace CarRentalApp
             // 
             // btnSignUp
             // 
+            btnSignUp.BackColor = Color.White;
             btnSignUp.FlatStyle = FlatStyle.Flat;
             btnSignUp.Location = new Point(159, 190);
             btnSignUp.Name = "btnSignUp";
             btnSignUp.Size = new Size(100, 35);
             btnSignUp.TabIndex = 6;
             btnSignUp.Text = "Sign Up";
+            btnSignUp.UseVisualStyleBackColor = false;
             btnSignUp.Click += BtnSignUp_Click;
             // 
             // LoginForm
@@ -134,13 +140,12 @@ namespace CarRentalApp
             ClientSize = new Size(500, 280);
             Controls.Add(rightPanel);
             Controls.Add(leftPanel);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             Load += LoginForm_Load;
-            leftPanel.ResumeLayout(false);
             rightPanel.ResumeLayout(false);
             rightPanel.PerformLayout();
             ResumeLayout(false);

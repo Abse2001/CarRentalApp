@@ -15,11 +15,11 @@ namespace CarRentalApp
         public MainForm()
         {
             InitializeComponent();
+            BtnHome_Click(null, EventArgs.Empty);
         }
 
         private void BtnLogout_Click(object? sender, EventArgs e)
         {
-            // Show LoginForm as a dialog, then close MainForm after login form closes
             Hide();
             using (var loginForm = new LoginForm())
             {
@@ -30,7 +30,6 @@ namespace CarRentalApp
 
         private void BtnHome_Click(object? sender, EventArgs e)
         {
-            // Load HomeControl into the main panel
             panelMain.Controls.Clear();
             HomeControl homeControl = new HomeControl();
             homeControl.Dock = DockStyle.Fill;
@@ -39,11 +38,18 @@ namespace CarRentalApp
 
         private void Btn_Cars_Click(object? sender, EventArgs e)
         {
-            // Load CarsControl into the main panel
             panelMain.Controls.Clear();
             CarsControl carsControl = new CarsControl();
             carsControl.Dock = DockStyle.Fill;
             panelMain.Controls.Add(carsControl);
+        }
+
+        private void btnBooking_Click(object sender, EventArgs e)
+        {
+            panelMain.Controls.Clear();
+            CarBookings carBookings = new CarBookings();
+            carBookings.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(carBookings);
         }
 
         private void panelMain_Paint(object sender, PaintEventArgs e)

@@ -74,6 +74,7 @@
             btnBooking.TabIndex = 3;
             btnBooking.Text = "Booking";
             btnBooking.UseVisualStyleBackColor = false;
+            btnBooking.Click += btnBooking_Click;
             // 
             // btnCars
             // 
