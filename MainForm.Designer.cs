@@ -47,6 +47,7 @@
             panelSidebar.Name = "panelSidebar";
             panelSidebar.Size = new Size(150, 961);
             panelSidebar.TabIndex = 0;
+            panelSidebar.Paint += panelSidebar_Paint;
             // 
             // btnLogout
             // 

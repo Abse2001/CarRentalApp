@@ -135,5 +135,10 @@ namespace CarRentalApp
         {
 
         }
+
+        private void LayoutPanelCar_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

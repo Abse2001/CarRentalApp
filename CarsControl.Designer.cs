@@ -49,10 +49,11 @@
             // LayoutPanelCar
             // 
             LayoutPanelCar.AutoScroll = true;
-            LayoutPanelCar.Location = new Point(99, 300);
+            LayoutPanelCar.Location = new Point(99, 223);
             LayoutPanelCar.Name = "LayoutPanelCar";
-            LayoutPanelCar.Size = new Size(1127, 535);
+            LayoutPanelCar.Size = new Size(1127, 612);
             LayoutPanelCar.TabIndex = 1;
+            LayoutPanelCar.Paint += LayoutPanelCar_Paint;
             // 
             // CarsControl
             // 
