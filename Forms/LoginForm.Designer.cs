@@ -1,5 +1,3 @@
-using CarRentalApp.Properties;
-
 namespace CarRentalApp
 {
     partial class LoginForm
@@ -14,7 +12,7 @@ namespace CarRentalApp
         private Label lblUsername = null!;
         private Label lblPassword = null!;
         private Button btnLogin = null!;
-        private Button btnSignUp = null!;
+        private Button btnExit = null!;  // <-- new exit button
 
         protected override void Dispose(bool disposing)
         {
@@ -25,6 +23,7 @@ namespace CarRentalApp
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             leftPanel = new Panel();
             rightPanel = new Panel();
             lblLoginTitle = new Label();
@@ -33,8 +32,10 @@ namespace CarRentalApp
             lblPassword = new Label();
             txtPassword = new TextBox();
             btnLogin = new Button();
-            btnSignUp = new Button();
+            btnExit = new Button();
+            errorProvider1 = new ErrorProvider(components);
             rightPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // leftPanel
@@ -43,7 +44,7 @@ namespace CarRentalApp
             leftPanel.Dock = DockStyle.Left;
             leftPanel.Location = new Point(0, 0);
             leftPanel.Name = "leftPanel";
-            leftPanel.Size = new Size(200, 280);
+            leftPanel.Size = new Size(250, 350);
             leftPanel.TabIndex = 1;
             leftPanel.Paint += leftPanel_Paint;
             // 
@@ -56,22 +57,22 @@ namespace CarRentalApp
             rightPanel.Controls.Add(lblPassword);
             rightPanel.Controls.Add(txtPassword);
             rightPanel.Controls.Add(btnLogin);
-            rightPanel.Controls.Add(btnSignUp);
+            rightPanel.Controls.Add(btnExit);
             rightPanel.Dock = DockStyle.Fill;
-            rightPanel.Location = new Point(200, 0);
+            rightPanel.Location = new Point(250, 0);
             rightPanel.Name = "rightPanel";
-            rightPanel.Size = new Size(300, 280);
+            rightPanel.Size = new Size(350, 350);
             rightPanel.TabIndex = 0;
             rightPanel.Paint += rightPanel_Paint;
             // 
             // lblLoginTitle
             // 
             lblLoginTitle.AutoSize = true;
-            lblLoginTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblLoginTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             lblLoginTitle.ForeColor = Color.Snow;
             lblLoginTitle.Location = new Point(40, 20);
             lblLoginTitle.Name = "lblLoginTitle";
-            lblLoginTitle.Size = new Size(213, 25);
+            lblLoginTitle.Size = new Size(274, 32);
             lblLoginTitle.TabIndex = 0;
             lblLoginTitle.Text = "Welcome to Car Rental";
             // 
@@ -79,7 +80,7 @@ namespace CarRentalApp
             // 
             lblUsername.AutoSize = true;
             lblUsername.ForeColor = SystemColors.Control;
-            lblUsername.Location = new Point(40, 70);
+            lblUsername.Location = new Point(40, 75);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(60, 15);
             lblUsername.TabIndex = 1;
@@ -87,16 +88,17 @@ namespace CarRentalApp
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(40, 90);
+            txtUsername.Font = new Font("Segoe UI", 12F);
+            txtUsername.Location = new Point(40, 100);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(220, 23);
+            txtUsername.Size = new Size(270, 29);
             txtUsername.TabIndex = 2;
             // 
             // lblPassword
             // 
             lblPassword.AutoSize = true;
             lblPassword.ForeColor = SystemColors.Control;
-            lblPassword.Location = new Point(40, 130);
+            lblPassword.Location = new Point(40, 145);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(57, 15);
             lblPassword.TabIndex = 3;
@@ -104,10 +106,11 @@ namespace CarRentalApp
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(40, 150);
+            txtPassword.Font = new Font("Segoe UI", 12F);
+            txtPassword.Location = new Point(40, 170);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(220, 23);
+            txtPassword.Size = new Size(270, 29);
             txtPassword.TabIndex = 4;
             // 
             // btnLogin
@@ -115,29 +118,34 @@ namespace CarRentalApp
             btnLogin.BackColor = Color.FromArgb(0, 120, 215);
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(40, 190);
+            btnLogin.Location = new Point(40, 220);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(100, 35);
+            btnLogin.Size = new Size(130, 40);
             btnLogin.TabIndex = 5;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += BtnLogin_Click;
             // 
-            // btnSignUp
+            // btnExit
             // 
-            btnSignUp.BackColor = Color.White;
-            btnSignUp.FlatStyle = FlatStyle.Flat;
-            btnSignUp.Location = new Point(159, 190);
-            btnSignUp.Name = "btnSignUp";
-            btnSignUp.Size = new Size(100, 35);
-            btnSignUp.TabIndex = 6;
-            btnSignUp.Text = "Sign Up";
-            btnSignUp.UseVisualStyleBackColor = false;
-            btnSignUp.Click += BtnSignUp_Click;
+            btnExit.BackColor = Color.FromArgb(232, 17, 35);
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.ForeColor = Color.White;
+            btnExit.Location = new Point(180, 220);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(130, 40);
+            btnExit.TabIndex = 6;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // LoginForm
             // 
-            ClientSize = new Size(500, 280);
+            ClientSize = new Size(600, 350);
             Controls.Add(rightPanel);
             Controls.Add(leftPanel);
             FormBorderStyle = FormBorderStyle.None;
@@ -148,7 +156,10 @@ namespace CarRentalApp
             Load += LoginForm_Load;
             rightPanel.ResumeLayout(false);
             rightPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
+
+        private ErrorProvider errorProvider1;
     }
 }
