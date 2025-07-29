@@ -115,6 +115,7 @@
 
                 this.Hide();
                 AppCtx.CurrentUser = user;
+                _activityService.LogActivity(user.Id, user.Username, "User logged in");
                 using (var mainForm = new MainForm(user, new UserManagment()))
                 {
                     mainForm.ShowDialog();

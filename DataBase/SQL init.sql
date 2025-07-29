@@ -1,4 +1,4 @@
--- Create database if not exists
+﻿-- Create database if not exists
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'Spedy')
 BEGIN
     CREATE DATABASE Spedy;
@@ -57,7 +57,7 @@ CREATE TABLE Cars (
     Year INT NOT NULL,
     Color NVARCHAR(50) NULL,
     RentalPricePerDay DECIMAL(18, 2) NOT NULL,
-    Status INT NOT NULL,
+    Status NVARCHAR(50) NOT NULL,
     ImageName NVARCHAR(256) NULL,
     DeletedAt DATETIME NULL
 );
