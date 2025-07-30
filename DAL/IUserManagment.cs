@@ -8,7 +8,7 @@ namespace CarRentalApp.DAL
     {
         User Authenticate(string username, string password);
         User GetById(int id);
-        User GetByUsername(string username);  // add this
+        User GetByUsername(string username);  
         IEnumerable<User> GetAll();
         bool Add(User user, User userToBeAdded);
         bool Update(User user, User userToBeUpdated);
@@ -19,7 +19,6 @@ namespace CarRentalApp.DAL
         bool IncrementBookingCount(int userId);
         bool IsUserLockedOut(string username);
 
-        // Add these new methods to interface:
         void LockAccount(int userId, int lockMinutes = 4);
         void ResetFailedLoginAttemptsAndLockout(int userId);
         int IncrementFailedLoginAttempt(string username);

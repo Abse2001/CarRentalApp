@@ -83,7 +83,6 @@ namespace CarRentalApp.Forms
                 {
                     MessageBox.Show($"CurrentUser ID: {_currentUser.Id}\nEditingUser ID: {_editingUser.Id}", "Debug IDs");
 
-                    // ✅ Prevent admin from editing other admins
                     if (_currentUser.UserRole == User.Role.Admin &&
                         _editingUser.UserRole == User.Role.Admin &&
                         _currentUser.Id != _editingUser.Id)
@@ -112,7 +111,6 @@ namespace CarRentalApp.Forms
 
                     _userService.UpdateUser(_currentUser, _editingUser);
 
-                    // ✅ Refetch if editing yourself
                     if (_currentUser.Id == _editingUser.Id)
                     {
                         var refreshed = _userService.GetUserById(_currentUser.Id);

@@ -328,7 +328,6 @@ namespace CarRentalApp.DAL
 
                 using var transaction = connection.BeginTransaction();
 
-                // Check car availability
                 string checkQuery = @"SELECT Status FROM Cars WHERE Id = @CarId AND DeletedAt IS NULL";
                 using (var checkCmd = new SqlCommand(checkQuery, connection, transaction))
                 {
@@ -342,7 +341,6 @@ namespace CarRentalApp.DAL
                     }
                 }
 
-                // Update car status to "Rented"
                 string updateStatusQuery = @"UPDATE Cars SET Status = 'Rented' WHERE Id = @CarId AND DeletedAt IS NULL";
                 using (var updateCmd = new SqlCommand(updateStatusQuery, connection, transaction))
                 {
@@ -354,7 +352,6 @@ namespace CarRentalApp.DAL
                     }
                 }
 
-                // Insert rental record
                 string rentalLogQuery = @"
             INSERT INTO CarRentals (CarId, CustomerId, RentedAt, DueDate)
             VALUES (@CarId, @CustomerId, GETUTCDATE(), @DueDate)";
@@ -368,7 +365,6 @@ namespace CarRentalApp.DAL
 
                 transaction.Commit();
 
-                // Log activity outside the transaction (safe even if it fails)
                 var user = AppCtx.CurrentUser;
                 if (user != null)
                 {
@@ -395,7 +391,6 @@ namespace CarRentalApp.DAL
             {
                 OpenConnection();
 
-                // Update latest rental for this car to set ReturnedAt if not already set
                 string updateRentalQuery = @"
                     UPDATE CarRentals
                     SET ReturnedAt = GETUTCDATE()
@@ -410,7 +405,6 @@ namespace CarRentalApp.DAL
                     }
                 }
 
-                // Update car status back to "Available"
                 string updateCarQuery = @"UPDATE Cars SET Status = 'Available' WHERE Id = @CarId AND DeletedAt IS NULL";
                 using var carCmd = new SqlCommand(updateCarQuery, connection);
                 carCmd.Parameters.AddWithValue("@CarId", carId);

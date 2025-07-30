@@ -11,7 +11,7 @@ namespace CarRentalApp.UserControls
         public AboutControl()
         {
             InitializeComponent();
-            this.Dock = DockStyle.Fill; // Ensure it fills the parent panel
+            this.Dock = DockStyle.Fill; 
             LoadAboutDataAsync();
         }
 

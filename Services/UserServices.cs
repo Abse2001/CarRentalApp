@@ -22,13 +22,11 @@ namespace CarRentalApp.Services
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 throw new ArgumentException("Username and password are required.");
 
-            // Get user by username (to check lockout and failed attempts)
             var user = _userRepo.GetByUsername(username);
 
             if (user == null)
                 throw new Exception("Invalid username or password.");
 
-            // Check if account is locked out
             var lockoutEnd = user.LockoutEnd;
             if (lockoutEnd.HasValue && lockoutEnd.Value > DateTime.UtcNow)
             {
@@ -36,14 +34,11 @@ namespace CarRentalApp.Services
                 throw new Exception($"Account is locked. Try again in {remaining.Minutes} minute(s) and {remaining.Seconds} second(s).");
             }
 
-            // Authenticate user (verify password)
             var authenticatedUser = _userRepo.Authenticate(username, password);
             if (authenticatedUser == null)
             {
-                // Increment failed attempts
                 int failedAttempts = _userRepo.IncrementFailedLoginAttempt(username);
 
-                // Lock the account if failed attempts reached max
                 if (failedAttempts >= MaxFailedAttempts)
                 {
                     _userRepo.LockAccount(user.Id, LockoutMinutes);
@@ -55,16 +50,13 @@ namespace CarRentalApp.Services
                 }
             }
 
-            // Successful login: reset failed attempts and lockout
             _userRepo.ResetFailedLoginAttemptsAndLockout(user.Id);
 
-            // Update last login timestamp
             _userRepo.UpdateLastLogin(authenticatedUser.Id);
 
             return authenticatedUser;
         }
 
-        // User Management
 
         public User GetUserById(int id) => _userRepo.GetById(id);
 
@@ -96,7 +88,6 @@ namespace CarRentalApp.Services
             return true;
         }
 
-        // Existing simple check
         public bool IsUserLockedOut(string username)
         {
             var user = _userRepo.GetByUsername(username);

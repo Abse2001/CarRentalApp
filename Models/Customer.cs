@@ -15,7 +15,6 @@ namespace CarRentalApp.Models
         public required string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        // List of rented car IDs
         public List<int> CarIds { get; set; } = new List<int>();
     }
 }

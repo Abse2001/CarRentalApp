@@ -25,7 +25,6 @@ namespace CarRentalApp.Components
             }
         }
 
-        // onActionClicked handles Rent or Return depending on status
         public static Panel CreateCarCard(CarInfo car, Action<CarInfo> onActionClicked)
         {
             var card = new Panel
@@ -138,7 +137,6 @@ namespace CarRentalApp.Components
             };
             actionButton.FlatAppearance.BorderSize = 0;
 
-            // Hook action button to invoke callback
             actionButton.Click += (sender, e) => onActionClicked?.Invoke(car);
 
             layout.Controls.Add(pic, 0, 0);

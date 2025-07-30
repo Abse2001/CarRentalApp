@@ -73,19 +73,16 @@ namespace CarRentalApp
 
             if (_currentUser.UserRole == User.Role.Admin)
             {
-                // Users Management
                 var usersMgmtItem = new ToolStripMenuItem("Users Management");
                 usersMgmtItem.Click += (s, e) =>
                 {
                     panelMain.Controls.Clear();
-                    // <-- Pass 'this' instead of 'mainForm'
                     var usersManagementControl = new UsersManagment(this, _currentUser, _userService);
                     usersManagementControl.Dock = DockStyle.Fill;
                     panelMain.Controls.Add(usersManagementControl);
                 };
                 profileMenu.Items.Add(usersMgmtItem);
 
-                // Car Management
                 var carManagementItem = new ToolStripMenuItem("Car Management");
                 carManagementItem.Click += (s, e) =>
                 {
@@ -96,7 +93,6 @@ namespace CarRentalApp
                 };
                 profileMenu.Items.Add(carManagementItem);
 
-                // Activity Logs (Admin only)
                 var activityLogsItem = new ToolStripMenuItem("Activity Logs");
                 activityLogsItem.Click += (s, e) =>
                 {

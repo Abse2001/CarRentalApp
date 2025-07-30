@@ -5,8 +5,8 @@
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Button btnCars;
-        private System.Windows.Forms.Button btnAbout;   // <-- NEW About button
-        private System.Windows.Forms.Button btnInbox;  // <-- NEW Inbox button
+        private System.Windows.Forms.Button btnAbout; 
+        private System.Windows.Forms.Button btnInbox; 
         private System.Windows.Forms.Button btnBalance;
         private System.Windows.Forms.Button btnProfile;
         private System.Windows.Forms.Button btnLogout;

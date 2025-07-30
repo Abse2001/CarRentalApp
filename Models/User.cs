@@ -24,7 +24,6 @@ namespace CarRentalApp.Models
         public int NumberOfBookings { get; set; } = 0;
         public int? CreatedByAdminId { get; set; }
 
-        // New fields for login lockout
         public int FailedLoginAttempts { get; set; } = 0;
         public DateTime? LockoutEnd { get; set; }
     }

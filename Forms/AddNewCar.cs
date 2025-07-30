@@ -12,7 +12,6 @@ namespace CarRentalApp.Forms
         private readonly Car _carToEdit;
         private readonly bool _isEditMode;
 
-        // Constructor for adding a new car
         public AddNewCar(CarService carService)
         {
             InitializeComponent();
@@ -26,7 +25,6 @@ namespace CarRentalApp.Forms
             _isEditMode = false;
         }
 
-        // Constructor for editing an existing car
         public AddNewCar(CarService carService, Car carToEdit) : this(carService)
         {
             _carToEdit = carToEdit ?? throw new ArgumentNullException(nameof(carToEdit));
@@ -57,7 +55,6 @@ namespace CarRentalApp.Forms
             {
                 if (_isEditMode)
                 {
-                    // Update existing car
                     _carToEdit.PlateNumber = txtPlateNumber.Text.Trim();
                     _carToEdit.Brand = txtBrand.Text.Trim();
                     _carToEdit.Model = txtModel.Text.Trim();
@@ -66,7 +63,7 @@ namespace CarRentalApp.Forms
                     _carToEdit.RentalPricePerDay = decimal.Parse(txtPrice.Text);
                     _carToEdit.ImageName = txtImageName.Text.Trim();
 
-                    bool updated = _carService.UpdateCar(_carToEdit); // Implement this in CarService
+                    bool updated = _carService.UpdateCar(_carToEdit);
 
                     if (updated)
                     {
@@ -79,7 +76,6 @@ namespace CarRentalApp.Forms
                 }
                 else
                 {
-                    // Add new car
                     var car = new Car
                     {
                         PlateNumber = txtPlateNumber.Text.Trim(),

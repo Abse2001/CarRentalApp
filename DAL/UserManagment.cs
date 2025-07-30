@@ -60,14 +60,12 @@ namespace CarRentalApp.DAL
                     LockoutEnd = reader.IsDBNull(12) ? (DateTime?)null : reader.GetDateTime(12)
                 };
 
-                // Locked out check
                 if (user.LockoutEnd.HasValue && user.LockoutEnd.Value > DateTime.UtcNow)
                 {
                     MessageBox.Show("User is locked out.");
                     return null;
                 }
 
-                // Verify password
                 bool verified = PasswordHelper.VerifyPassword(password, user.PasswordHash);
                 reader.Close();
 
@@ -140,7 +138,6 @@ namespace CarRentalApp.DAL
             string lockoutSql = "";
             if (newFailedCount >= 4)
             {
-                // Lock account for 4 minutes
                 lockoutSql = ", LockoutEnd = DATEADD(minute, 4, GETUTCDATE())";
             }
 
@@ -181,7 +178,7 @@ namespace CarRentalApp.DAL
         {
             try
             {
-                OpenConnection();  // OPEN connection here!
+                OpenConnection();  
 
                 string updateSql = @"
             UPDATE Users SET FailedLoginAttempts = 0, LockoutEnd = NULL
@@ -193,7 +190,7 @@ namespace CarRentalApp.DAL
             }
             finally
             {
-                CloseConnection();  // Close connection here
+                CloseConnection();  
             }
         }
 

@@ -12,7 +12,7 @@ namespace CarRentalApp.Forms
     {
         private readonly CarService _carService;
         private readonly Car _selectedCar;
-        private readonly int _userId;  // Logged-in user ID
+        private readonly int _userId; 
         private readonly UserManagment _userManagment = new UserManagment();
 
         public RentNow(CarService carService, Car selectedCar, int userId)
@@ -22,7 +22,6 @@ namespace CarRentalApp.Forms
             _selectedCar = selectedCar ?? throw new ArgumentNullException(nameof(selectedCar));
             _userId = userId;
 
-            // Set DOB default to exactly 18 years ago
             dtpDOB.Value = DateTime.Today.AddYears(-18);
             dtpDOB.MaxDate = DateTime.Today.AddYears(-18);
             dtpDOB.MinDate = DateTime.Today.AddYears(-100);
@@ -32,7 +31,6 @@ namespace CarRentalApp.Forms
         {
             try
             {
-                // Validation
                 if (string.IsNullOrWhiteSpace(txtFirstName.Text))
                 {
                     MessageBox.Show("First name is required.", "Validation Error");
@@ -64,21 +62,18 @@ namespace CarRentalApp.Forms
                     return;
                 }
 
-                // Phone digits only check
                 if (!Regex.IsMatch(txtPhone.Text.Trim(), @"^\d+$"))
                 {
                     MessageBox.Show("Phone number must contain digits only.", "Validation Error");
                     return;
                 }
 
-                // Email format check (simple)
                 if (!Regex.IsMatch(txtEmail.Text.Trim(), @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
                 {
                     MessageBox.Show("Please enter a valid email address.", "Validation Error");
                     return;
                 }
 
-                // DOB check: must be at least 18
                 DateTime dob = dtpDOB.Value.Date;
                 int age = DateTime.Today.Year - dob.Year;
                 if (dob > DateTime.Today.AddYears(-age)) age--;
@@ -90,7 +85,6 @@ namespace CarRentalApp.Forms
 
                 string license = txtDrivingLicense.Text.Trim();
 
-                // Get or create customer
                 int customerId = GetOrCreateCustomerId(license);
                 if (customerId == 0)
                 {

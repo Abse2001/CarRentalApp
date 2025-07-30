@@ -29,7 +29,7 @@ namespace CarRentalApp.UserControls
                 return;
             }
 
-            btnSend.Enabled = false; // disable to prevent multiple clicks
+            btnSend.Enabled = false; 
 
             var jsonData = JsonSerializer.Serialize(new
             {
@@ -58,7 +58,7 @@ namespace CarRentalApp.UserControls
             }
             finally
             {
-                btnSend.Enabled = true; // re-enable
+                btnSend.Enabled = true;
             }
         }
         private void PanelContent_Resize(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace CarRentalApp.UserControls
             int panelWidth = panelContent.ClientSize.Width;
 
             int maxWidth = txtMessage.MaximumSize.Width;
-            int desiredWidth = Math.Min(panelWidth - 40, maxWidth); // leave 20px margin on each side
+            int desiredWidth = Math.Min(panelWidth - 40, maxWidth); 
             int x = (panelWidth - desiredWidth) / 2;
 
             txtMessage.Width = desiredWidth;
@@ -78,7 +78,6 @@ namespace CarRentalApp.UserControls
             int desiredHeight = Math.Min(availableHeight, txtMessage.MaximumSize.Height);
             txtMessage.Height = desiredHeight;
 
-            // btnSend directly below
             btnSend.Width = desiredWidth;
             btnSend.Location = new Point(x, txtMessage.Bottom + 10);
         }

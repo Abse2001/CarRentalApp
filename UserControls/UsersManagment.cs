@@ -29,7 +29,7 @@ namespace CarRentalApp
             dgvUsers.Columns.Add("UserId", "ID");
             dgvUsers.Columns.Add("Username", "Username");
             dgvUsers.Columns.Add("FullName", "Full Name");
-            dgvUsers.Columns.Add("Email", "Email"); // Placeholder
+            dgvUsers.Columns.Add("Email", "Email"); 
             dgvUsers.Columns.Add("Balance", "Balance ($)");
             dgvUsers.Columns.Add("UserRole", "Role");
             dgvUsers.Columns.Add("Status", "Status");
@@ -53,7 +53,7 @@ namespace CarRentalApp
                     user.Id,
                     user.Username,
                     $"{user.FirstName} {user.LastName}".Trim(),
-                    "", // Email placeholder
+                    "", 
                     user.Balance.ToString("F2"),
                     user.UserRole.ToString(),
                     user.IsLocked ? "Locked" : "Active"

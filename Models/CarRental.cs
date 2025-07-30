@@ -10,7 +10,7 @@ namespace CarRentalApp.Models
         public DateTime RentedAt { get; set; }
         public DateTime? ReturnedAt { get; set; }
 
-        public DateTime DueDate { get; set; } // <- New field for expected return
+        public DateTime DueDate { get; set; } 
 
     }
 }

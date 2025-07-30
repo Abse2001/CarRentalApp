@@ -23,7 +23,6 @@
                 InitializeComponent();
                 this.FormBorderStyle = FormBorderStyle.None;
 
-                // Initialize UserService with UserRepository
                 _userService = new UserService(new UserManagment());
                 _activityService = new ActivityServices();
 
@@ -53,7 +52,7 @@
                 {
                     logoBox.Image = Image.FromFile(logoPath);
                     logoBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    logoBox.Size = new Size(150, 150); // Bigger logo size
+                    logoBox.Size = new Size(150, 150); 
                     logoBox.Location = new Point(
                         leftPanel.Width / 2 - logoBox.Width / 2,
                         leftPanel.Height / 2 - logoBox.Height / 2
@@ -128,12 +127,10 @@
 
                 if (msg.Contains("locked"))
                 {
-                    // Account is locked — show in error provider
                     errorProvider1.SetError(txtPassword, ex.Message);
                 }
                 else
                 {
-                    // Other errors
                     MessageBox.Show("Login failed: " + ex.Message, "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     errorProvider1.SetError(txtPassword, ex.Message);
                 }
@@ -178,13 +175,12 @@
                 this.Close();
             }
 
-            // Override ProcessCmdKey to prevent beep on Enter key globally
             protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
             {
                 if (keyData == Keys.Enter)
                 {
                     btnLogin.PerformClick();
-                    return true; // Indicate key handled, prevent beep
+                    return true; 
                 }
                 return base.ProcessCmdKey(ref msg, keyData);
             }
